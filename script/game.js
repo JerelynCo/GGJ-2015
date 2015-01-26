@@ -15,6 +15,10 @@ window.onload = function() {
     	matrixScene.create(); 
     }
 
+    function update () {
+    	matrixScene.update(); 
+    }
+
 
     matrixScene = {
 	    preload: function() {
@@ -36,8 +40,10 @@ window.onload = function() {
 	    create: function() {
 	   		game.stage.backgroundColor = '#6d94b5';
 	   		letters = game.add.group();
+	   		renderLetters();
 
-	   		for(var i = 0; i < 4; i++){
+			function renderLetters(){
+				for(var i = 0; i < 4; i++){
 	   			letters.create(Math.random() * 800, Math.random() * 600, 'A');
 	   			letters.create(Math.random() * 800, Math.random() * 600, 'B');
 	   			letters.create(Math.random() * 800, Math.random() * 600, 'C');
@@ -49,30 +55,24 @@ window.onload = function() {
 	   			letters.create(Math.random() * 800, Math.random() * 600, 'M');
 	   			letters.create(Math.random() * 800, Math.random() * 600, 'Q');
 	   			letters.create(Math.random() * 800, Math.random() * 600, 'Y');
-	   		}
-	   		for(var i = 0; i < 10; i++){
-	   			letters.create(Math.random() * 800, Math.random() * 600, 'h');
-	   			letters.create(Math.random() * 800, Math.random() * 600, 'i');
-	   		}	
-
-			hKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
-			iKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
-
-			if(hKey.isDown){
-				//game.state.start('next');
-				var text = "- phaser -\n with a sprinkle of \n pixi dust.";
-			    var style = { font: "65px Arial", fill: "#ff0044", align: "center" };
-			    game.add.text(game.world.centerX-300, 0, text, style);
-				//game.add.text(0，0，'Hello', { font: "65px Arial", fill: "#ff0044", align: "center" });	
+	   			}
+		   		for(var i = 0; i < 10; i++){
+		   			letters.create(Math.random() * 800, Math.random() * 600, 'h');
+		   			letters.create(Math.random() * 800, Math.random() * 600, 'i');
+		   		}	
+			}		
+	    },
+	    update: function(){
+			if(game.input.keyboard.isDown(Phaser.Keyboard.H) && game.input.keyboard.isDown(Phaser.Keyboard.I) ){
+				game.state.start('next');
 			}
-			
-
 	    }
+
 	};
 
 	next = {
 		create: function(){
-			game.stage.backgroundColor = '#FFFFFF';		
+			game.stage.backgroundColor = '#000000';		
 		}
 	};
 
